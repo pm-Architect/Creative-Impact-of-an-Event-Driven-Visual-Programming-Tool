@@ -1,14 +1,62 @@
-\documentclass{article}
-\usepackage{graphicx}
-\usepackage[utf8]{inputenc}
-\usepackage{algorithm}
-\usepackage{color}
+\documentclass[aps,prb,twocolumn,superscriptaddress,floatfix,longbibliography]{revtex4-2}
+
+\usepackage{amsmath,amssymb} % math symbols
+\usepackage{bm} % bold math font
+\usepackage{graphicx} % for figures
+\usepackage{comment} % allows block comments
+%\usepackage{ulem} % allows strikeout text, e.g. \sout{text}
+
+% \usepackage{minted} % allows colored code
+\usepackage{textcomp} % This package gives the text quote '
+
+\usepackage{enumitem}
+\setlist{noitemsep,leftmargin=*,topsep=0pt,parsep=0pt}
+
+\usepackage{xcolor} % \textcolor{red}{text} will be red for notes
+\definecolor{lightgray}{gray}{0.6}
+\definecolor{medgray}{gray}{0.4}
+
+\usepackage{hyperref}
+\hypersetup{
+colorlinks=true,
+urlcolor= black,
+citecolor=black,
+linkcolor= black,
+% bookmarks=true,
+% bookmarksopen=false,
+}
+
+% Code to add paragraph numbers and titles
+\newif\ifptitle
+\newif\ifpnumber
+\newcounter{para}
+\newcommand\ptitle[1]{\par\refstepcounter{para}
+{\ifpnumber{\noindent\textcolor{lightgray}{\textbf{\thepara}}\indent}\fi}
+{\ifptitle{\textbf{[{#1}]}}\fi}}
+\ptitletrue  % comment this line to hide paragraph titles
+\pnumbertrue  % comment this line to hide paragraph numbers
+
+% minimum font size for figures
+\newcommand{\minfont}{6}
+
+% Uncomment this line if you prefer your vectors to appear as bold letters.
+% By default they will appear with arrows over them.
+% \renewcommand{\vec}[1]{\bm{#1}}
+
+% Allows to rewrite the same title in the supplement
+\newcommand{\mytitle}{Creative Impact of an Event-Driven Visual Programming Tool}
  
 \begin{document}
 
-\title{Creative Impact of an Event-Driven Visual Programming Tool}
- 
+\title{\mytitle}
+
 \author{Praneet Mathur}
+\affiliation{Co-Founder, iiterate Technologies GmbH, Adenau, Germany}
+\email[]{praneet@iiterate.de}
+\affiliation{Founder, ARPM Design and Research LLP, Gurgaon, Haryana, India}
+\email[]{praneet@arpmdesignandresearch.com}
+
+\date{\today}
  
 %-----------------------------------------------------------------------
 % If your printer does not reproduce dimensions exactly, it may be
@@ -26,8 +74,6 @@
 %     \setlength{\evensidemargin}{0pt}
 %------------------------------------------------------------------------
  
-\maketitle % this produces the title block
- 
 \begin{abstract}
 Computational design is gaining global prominence. With the increase in demand for technologically capable designers, we find more designers understanding computers better, learning programming languages and molding technologies to fit their needs. This has led to multidisciplinary communities forming around visual scripting tools (VSTs) like Grasshopper3D, Dynamo, etc. These communities consist of many users from creative fields who find it easier to learn a visual scripting language than a programming language. However, function-driven programming and various quirks of these tools delimit their application to a closed spectrum of use-cases. This further limits the users’ capabilities and forces many to hack their way around basic programming language paradigms like loops, event handling, etc.
 
@@ -36,19 +82,25 @@ VSTs seem to promote a creative affinity to programming, while also making it mo
 User experience inferences are derived from diverse user studies, with a focus on students and professionals in the design and AEC industries. Various parameters and test scenarios are used to objectively assess the impact of enabling event-driven programming for creative use.
 \end{abstract}
  
+\maketitle % this produces the title block
+
+\tableofcontents
+
 \section{INTRODUCTION}
 
 Here give an introduction to your research.
 
-\section{TEXTS}
+\subsection{Related Work}
+
+Related work should be in two parts - One at the beginning of the paper and one at the end, to help the reader draw meaningful inferences.
  
-\subsection{Abstract}
+\subsection{Preliminaries and Definitions}
 
 Your contribution should  be preceded by a {\it short} Abstract
 of not more than 150 words,
 written as a single paragraph, as above.
 
-\subsection{Formulae}
+\section{Significance of Visual Programming Languages}
 
 Symbols of variables should  be typed in math mode.
 For example, to get the Greek letter alpha,
@@ -69,12 +121,32 @@ If you want to refer to the equation, you can
 the {\tt label}, with ($\backslash$ref\{label\}).
 For example, the above equation is (\ref{Schroedinger}).
 
-\subsection{Footnotes}
+\section{Significance of Event-Driven Programming}
 
 If unavoidable, footnotes should be placed at the bottom
 of the page in which they are referred to.
 
-\subsection{References}
+\section{Studying Existing VSTs}
+
+If unavoidable, footnotes should be placed at the bottom
+of the page in which they are referred to.
+
+\section{Specifications of an Ideal VPL}
+
+If unavoidable, footnotes should be placed at the bottom
+of the page in which they are referred to.
+
+\section{Specifications of an Ideal VPL-IDE}
+
+If unavoidable, footnotes should be placed at the bottom
+of the page in which they are referred to.
+
+\section{VPL Core Architecture}
+
+If unavoidable, footnotes should be placed at the bottom
+of the page in which they are referred to.
+
+\subsection{Data Structures}
 
 References should be cited  in the text using numbers within
 square brackets: `example [1],
@@ -94,9 +166,9 @@ cannot be quoted, e.g. for future publications.
 
 For example, here's a reference to the paper
 listed in teh bibliography (at the end):
-Ref.\ \cite{Stump}.
+% Ref.\ \cite{Stump}.
 
-\subsubsection{Figures}
+\subsection{Computation}
 
 All figures should be quoted in consecutive numerical order
 in the text and should, for example, be referred to as
@@ -127,7 +199,7 @@ file. (See the source page.)}
 \end{center}
 \end{figure}
 
-\subsubsection{Tables}
+\subsection{IDE Canvas Rendering}
 
 Tables should be referred to in the text as Table 1, Tables 2--7.
 They should be centred on the page width, with the table
@@ -135,7 +207,7 @@ number, followed by a brief caption in point size 9, typed
 {\it above} them if possible. For the
 positioning of tables, follow the same rules as those for numbered figures.
 
-\subsection{Appendices}
+\subsection{Extensibility with Plugins}
 
 These should be laid out as the sections in the text,
 except that each appendix should start on a new page.
@@ -144,7 +216,124 @@ to as Appendix 1, Appendices 1--3, etc.
 Equations, figures and tables should be
 quoted as Eq. (A.1.1) and Fig. A.1.1, etc.  
 
-\subsection*{Acknowledgements}
+\section{Windows Desktop IDE Application}
+
+If unavoidable, footnotes should be placed at the bottom
+of the page in which they are referred to.
+
+\subsection{OpenFrameworks-based Embedded Infinite Canvas}
+
+These should be laid out as the sections in the text,
+except that each appendix should start on a new page.
+They should be numbered consecutively and be referred
+to as Appendix 1, Appendices 1--3, etc. 
+Equations, figures and tables should be
+quoted as Eq. (A.1.1) and Fig. A.1.1, etc.  
+
+\subsection{WPF-based Embedded Infinite Canvas}
+
+These should be laid out as the sections in the text,
+except that each appendix should start on a new page.
+They should be numbered consecutively and be referred
+to as Appendix 1, Appendices 1--3, etc. 
+Equations, figures and tables should be
+quoted as Eq. (A.1.1) and Fig. A.1.1, etc.  
+
+\subsubsection{WPF and Abstraction}
+
+These should be laid out as the sections in the text,
+except that each appendix should start on a new page.
+They should be numbered consecutively and be referred
+to as Appendix 1, Appendices 1--3, etc. 
+Equations, figures and tables should be
+quoted as Eq. (A.1.1) and Fig. A.1.1, etc.  
+
+\subsection{Packaging Components}
+
+These should be laid out as the sections in the text,
+except that each appendix should start on a new page.
+They should be numbered consecutively and be referred
+to as Appendix 1, Appendices 1--3, etc. 
+Equations, figures and tables should be
+quoted as Eq. (A.1.1) and Fig. A.1.1, etc.  
+
+\section{Building Default Libraries}
+
+If unavoidable, footnotes should be placed at the bottom
+of the page in which they are referred to.
+
+\section{Interoperability Architecture}
+
+If unavoidable, footnotes should be placed at the bottom
+of the page in which they are referred to.
+
+\subsection{Local Interop}
+
+These should be laid out as the sections in the text,
+except that each appendix should start on a new page.
+They should be numbered consecutively and be referred
+to as Appendix 1, Appendices 1--3, etc. 
+Equations, figures and tables should be
+quoted as Eq. (A.1.1) and Fig. A.1.1, etc.  
+
+\subsubsection{Rhinoceros3D Interop}
+
+These should be laid out as the sections in the text,
+except that each appendix should start on a new page.
+They should be numbered consecutively and be referred
+to as Appendix 1, Appendices 1--3, etc. 
+Equations, figures and tables should be
+quoted as Eq. (A.1.1) and Fig. A.1.1, etc.  
+
+\subsection{Network Interop}
+
+These should be laid out as the sections in the text,
+except that each appendix should start on a new page.
+They should be numbered consecutively and be referred
+to as Appendix 1, Appendices 1--3, etc. 
+Equations, figures and tables should be
+quoted as Eq. (A.1.1) and Fig. A.1.1, etc.  
+
+\subsubsection{Cloud Applications}
+
+These should be laid out as the sections in the text,
+except that each appendix should start on a new page.
+They should be numbered consecutively and be referred
+to as Appendix 1, Appendices 1--3, etc. 
+Equations, figures and tables should be
+quoted as Eq. (A.1.1) and Fig. A.1.1, etc.  
+
+\section{Headless Computation}
+
+If unavoidable, footnotes should be placed at the bottom
+of the page in which they are referred to.
+
+\section{Multithreaded performance}
+
+If unavoidable, footnotes should be placed at the bottom
+of the page in which they are referred to.
+
+\section{Performance Testing}
+
+If unavoidable, footnotes should be placed at the bottom
+of the page in which they are referred to.
+
+\section{User Studies}
+
+If unavoidable, footnotes should be placed at the bottom
+of the page in which they are referred to.
+
+\section{Inferences and Conclusions}
+
+If unavoidable, footnotes should be placed at the bottom
+of the page in which they are referred to.
+
+\section{Future Work}
+
+If unavoidable, footnotes should be placed at the bottom
+of the page in which they are referred to.
+
+\section*{Acknowledgements}
 
 If required, acknowledgements  should appear as a section
 immediately before the reference section.
@@ -156,52 +345,66 @@ The acknowledgements section should not be numbered.
 
 We can accept contributions prepared using Latex.
 
-\section*{TEXTS}
+% \section*{TEXTS}
 
-The standard Latex commands \verb|\section, \subsection and \subsubsection|~
-should be used for headings.
-In the text, leave a blank line after each paragraph.
-References to other documents should be
-made using the \verb|\cite|~command.
-The command \verb|\ref|~should be used to refer to 
-equations, figures and tables within your contribution
-which should be labelled using the \verb|\label|~command within the 
-equation, figure or table environment.
+% The standard Latex commands \verb|\section, \subsection and \subsubsection|~
+% should be used for headings.
+% In the text, leave a blank line after each paragraph.
+% References to other documents should be
+% made using the \verb|\cite|~command.
+% The command \verb|\ref|~should be used to refer to 
+% equations, figures and tables within your contribution
+% which should be labelled using the \verb|\label|~command within the 
+% equation, figure or table environment.
 
-\section*{FORMULAE}
+% \section*{FORMULAE}
 
-The default Tex format is acceptable for most formulae.
-For numbered equations, the construction \\
-\verb|\begin{equation}|\\ 
-\verb|...|\\
-\verb|\label{name}|\\
-\verb|\end{equation}|\\
-should be used.
+% The default Tex format is acceptable for most formulae.
+% For numbered equations, the construction \\
+% \verb|\begin{equation}|\\ 
+% \verb|...|\\
+% \verb|\label{name}|\\
+% \verb|\end{equation}|\\
+% should be used.
 
-\section*{FIGURES}
+% \section*{FIGURES}
 
-Figures may be prepared electronically using a variety of
-computer applications, as Encapsulated Postscript files.
-Make sure that the image, when printed, is of high quality.
-To include figures in Latex, a contruction of the form\\
-\verb|\begin{figure}[htbp]|\\
-\verb|\includegraphics[width=xcm]{file_name.eps}|\\
-\verb|\caption{}|\\
-\verb|\label{name}|\\
-\verb|\end{figure}|\\
-should be used.
-Figures may be centred
-using the \verb|\begin{center}... \end{center}| construct
-within the figure environment.
+% Figures may be prepared electronically using a variety of
+% computer applications, as Encapsulated Postscript files.
+% Make sure that the image, when printed, is of high quality.
+% To include figures in Latex, a contruction of the form\\
+% \verb|\begin{figure}[htbp]|\\
+% \verb|\includegraphics[width=xcm]{file_name.eps}|\\
+% \verb|\caption{}|\\
+% \verb|\label{name}|\\
+% \verb|\end{figure}|\\
+% should be used.
+% Figures may be centred
+% using the \verb|\begin{center}... \end{center}| construct
+% within the figure environment.
 
 \section*{REFERENCES}
 
+% Now here is the reference section.
+
 \begin{thebibliography}{99}
 
-\bibitem{Stump}{D. R. Stump, ``How to write a LaTeX paper'',2000.}
-
-\end{thebibliography}
-
-\end{document}
+    % Book
+    \bibitem{Weste93} Neil H. E. Weste and Kamran Eshraghian, {\it Principles
+    of CMOS VLSI Design}, 2nd ed. Reading, MA: Addison-Wesley, 1993.
+  
+    %Example of a Conference Paper
+    \bibitem{LiY88} R. A. Lincoln and K. Yao, ``Efficient Systolic Kalman
+    Filtering Design by Dependence Graph Mapping,'' in {\it VLSI Signal
+    Processing, III}, IEEE Press, R. W. Brodersen and H. S. Moscovitz Eds.,
+    1988, pp.~396--410.
+  
+    % Example of a Journal Paper
+    \bibitem{BiS92} C. H. Bischof and G. M. Shroff, ``On Updating Signal
+    Subspaces,'' {\it IEEE Trans. on Signal Processing}, vol.~40, no.~1,
+    pp.~96--105, Jan. 1992.
+  
+  \end{thebibliography}
+  \end{document}
 
 
